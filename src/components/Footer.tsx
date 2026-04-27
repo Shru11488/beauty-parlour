@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-black text-white py-16 px-6 md:px-10">
+    <footer id="contact" className="bg-black text-white py-20 px-6 md:px-10">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         {/* Brand */}
         <div>
@@ -14,15 +14,15 @@ export default function Footer() {
         {/* Contact */}
         <div>
           <h3 className="font-medium mb-4">Contact</h3>
-          <p className="text-gray-400 text-sm">📍 Thane, Mumbai</p>
-          <p className="text-gray-400 text-sm">📞 +91 98765 43210</p>
+          <p className="text-gray-400 text-sm">📍 London, United Kingdom</p>
+          <p className="text-gray-400 text-sm">📞 +44 7700 900123</p>
           <p className="text-gray-400 text-sm">✉️ glowstudio@email.com</p>
         </div>
 
         {/* Hours */}
         <div>
           <h3 className="font-medium mb-4">Working Hours</h3>
-          <p className="text-gray-400 text-sm">Mon - Sat: 10:00 AM – 8:00 PM</p>
+          <p className="text-gray-400 text-sm">Mon - Sat: 9:00 AM – 7:00 PM</p>
           <p className="text-gray-400 text-sm">Sunday: Closed</p>
         </div>
       </div>

@@ -27,7 +27,7 @@ export const services = [
     title: "Manicure",
     price: "₹800",
     desc: "Luxury manicure",
-    image: "https://images.unsplash.com/photo-1588776814546-ec7e5f5f3c69",
+    image: "https://pngimg.com/uploads/nails/nails_PNG9.png",
   },
   {
     title: "Pedicure",

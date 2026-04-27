@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-20 px-6 md:px-10 bg-white">
+    <section id="gallery" className="py-24 px-6 md:px-10 bg-white">
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold">Our Work</h2>

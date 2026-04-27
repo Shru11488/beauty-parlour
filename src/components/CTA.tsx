@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function CTA() {
   return (
-    <section className="py-20 text-center bg-[#1A1A1A] text-white">
+    <section className="py-24 text-center bg-[#1A1A1A] text-white">
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

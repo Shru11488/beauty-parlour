@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-6 md:px-10 bg-[#F8F5F2]">
+    <section id="services" className="py-24 px-6 md:px-10 bg-[#F8F5F2]">
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold">Our Services</h2>
