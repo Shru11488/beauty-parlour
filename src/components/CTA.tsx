@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function CTA() {
+export default function CTA({ onBook }: { onBook: () => void }) {
   return (
     <section className="py-24 text-center bg-[#1A1A1A] text-white">
       <motion.h2
@@ -20,6 +20,7 @@ export default function CTA() {
 
       <motion.button
         whileHover={{ scale: 1.05 }}
+        onClick={onBook}
         className="bg-[#D4AF37] px-6 py-3 rounded-full text-black font-medium"
       >
         Book Appointment

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function Hero({ onBook }: { onBook: () => void }) {
   return (
     <section
       className="h-screen flex items-center justify-center text-center bg-cover bg-center relative"
@@ -36,6 +36,7 @@ export default function Hero() {
 
         <motion.button
           whileHover={{ scale: 1.05 }}
+          onClick={onBook}
           className="bg-[#D4AF37] px-6 py-3 rounded-full text-black font-medium"
         >
           Book Appointment

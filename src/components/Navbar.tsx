@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ onBook }: { onBook: () => void }) {
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-4">
@@ -18,7 +18,10 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <button className="bg-[#D4AF37] text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition">
+        <button
+          onClick={onBook}
+          className="bg-[#D4AF37] text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition"
+        >
           Book Now
         </button>
       </div>
