@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 type FormData = {
   name: string;
   phone: string;
-  service: string;
+  services: string[];
   date: string;
   time: string;
 };
@@ -22,7 +22,7 @@ export default function BookingModal({
 }) {
   const { register, handleSubmit, reset, setValue, watch } = useForm<FormData>({
     defaultValues: {
-      service: selectedService || "",
+      services: selectedService ? [selectedService] : [],
       time: "",
     },
   });
@@ -31,11 +31,12 @@ export default function BookingModal({
   const [success, setSuccess] = useState(false);
 
   const selectedTime = watch("time");
+  const selectedServices = watch("services") || [];
 
-  // ✅ Auto-fill service
+  //Auto-fill service
   useEffect(() => {
     if (selectedService) {
-      setValue("service", selectedService);
+      setValue("services", [selectedService]);
     }
   }, [selectedService, setValue]);
 
@@ -46,7 +47,6 @@ export default function BookingModal({
 
     await new Promise((res) => setTimeout(res, 1000));
 
-    // ✅ Store locally (temporary backend)
     const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
     localStorage.setItem("bookings", JSON.stringify([...existing, data]));
 
@@ -62,7 +62,17 @@ export default function BookingModal({
     }, 2000);
   };
 
-  // ✅ Time slots
+  //Service options (moved outside JSX)
+  const serviceOptions = [
+    "Bridal Makeup",
+    "Hair Styling",
+    "Facials",
+    "Nail Art",
+    "Manicure",
+    "Pedicure",
+  ];
+
+  // Time slots
   const timeSlots = [
     "10:00 AM",
     "11:00 AM",
@@ -88,31 +98,45 @@ export default function BookingModal({
           </p>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Name */}
             <input
               {...register("name", { required: true })}
               placeholder="Your Name"
               className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             />
 
+            {/* Phone */}
             <input
               {...register("phone", { required: true })}
               placeholder="Phone Number"
               className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
             />
 
-            {/* Service */}
-            <select
-              {...register("service", { required: true })}
-              className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-            >
-              <option value="">Select Service</option>
-              <option>Bridal Makeup</option>
-              <option>Hair Styling</option>
-              <option>Facials</option>
-              <option>Nail Art</option>
-              <option>Manicure</option>
-              <option>Pedicure</option>
-            </select>
+            {/*MULTI SERVICE */}
+            <div>
+              <p className="text-sm font-medium mb-2">Select Services</p>
+
+              <div className="grid grid-cols-2 gap-2">
+                {serviceOptions.map((service) => (
+                  <label
+                    key={service}
+                    className="flex items-center gap-2 border rounded-lg p-2 cursor-pointer hover:bg-gray-100"
+                  >
+                    <input
+                      type="checkbox"
+                      value={service}
+                      {...register("services", { required: true })}
+                    />
+                    <span className="text-sm">{service}</span>
+                  </label>
+                ))}
+              </div>
+
+              {/* Selected count */}
+              <p className="text-xs text-gray-500 mt-1">
+                {selectedServices.length} selected
+              </p>
+            </div>
 
             {/* Date */}
             <input
@@ -143,9 +167,10 @@ export default function BookingModal({
               </div>
             </div>
 
-            {/* Hidden input to register time */}
+            {/* Hidden time */}
             <input type="hidden" {...register("time", { required: true })} />
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
