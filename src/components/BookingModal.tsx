@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type FormData = {
   name: string;
@@ -13,20 +13,36 @@ type FormData = {
 export default function BookingModal({
   isOpen,
   onClose,
+  selectedService,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  selectedService: string | null;
 }) {
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>({
+    defaultValues: {
+      service: selectedService || "",
+    },
+  });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  // ✅ THIS IS THE KEY PART (auto-fill sync)
+  useEffect(() => {
+    if (selectedService) {
+      reset((prev) => ({
+        ...prev,
+        service: selectedService,
+      }));
+    }
+  }, [selectedService, reset]);
 
   if (!isOpen) return null;
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
 
-    // simulate API call
     await new Promise((res) => setTimeout(res, 1200));
 
     console.log("Booking:", data);
@@ -64,14 +80,18 @@ export default function BookingModal({
               className="w-full border p-2 rounded"
             />
 
+            {/* ✅ UPDATED SELECT */}
             <select
               {...register("service")}
               className="w-full border p-2 rounded"
             >
+              <option value="">Select Service</option>
               <option>Bridal Makeup</option>
               <option>Hair Styling</option>
-              <option>Facial</option>
+              <option>Facials</option>
               <option>Nail Art</option>
+              <option>Manicure</option>
+              <option>Pedicure</option>
             </select>
 
             <input

@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ServiceModal from "./ServiceModal";
 
-export default function Services({ onBook }: { onBook: () => void }) {
+export default function Services({
+  onBook,
+}: {
+  onBook: (serviceName: string) => void;
+}) {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const categories = ["All", "Makeup", "Hair", "Nails", "Skin"];
@@ -80,7 +84,7 @@ export default function Services({ onBook }: { onBook: () => void }) {
         onClose={() => setSelectedService(null)}
         onBook={() => {
           setSelectedService(null);
-          onBook();
+          onBook(selectedService?.title || "");
         }}
       />
     </section>

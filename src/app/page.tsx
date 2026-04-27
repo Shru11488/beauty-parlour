@@ -13,18 +13,38 @@ import BookingModal from "@/components/BookingModal";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<string | null>(null);
 
   return (
     <main className="bg-[#F8F5F2] text-[#1A1A1A]">
+      {/* Navbar */}
       <Navbar onBook={() => setOpen(true)} />
+
+      {/* Hero */}
       <Hero onBook={() => setOpen(true)} />
-      <Services />
+
+      {/* Services (IMPORTANT CHANGE) */}
+      <Services
+        onBook={(serviceName: string) => {
+          setSelectedService(serviceName);
+          setOpen(true);
+        }}
+      />
+
       <Gallery />
       <Testimonials />
+
+      {/* CTA */}
       <CTA onBook={() => setOpen(true)} />
+
       <Footer />
 
-      <BookingModal isOpen={open} onClose={() => setOpen(false)} />
+      {/* Booking Modal (IMPORTANT CHANGE) */}
+      <BookingModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        selectedService={selectedService}
+      />
     </main>
   );
 }

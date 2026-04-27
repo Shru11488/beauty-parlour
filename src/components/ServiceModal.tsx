@@ -13,7 +13,7 @@ type Service = {
 type Props = {
   service: Service | null;
   onClose: () => void;
-  onBook: () => void;
+  onBook: (serviceName: string) => void;
 };
 
 export default function ServiceModal({ service, onClose, onBook }: Props) {
@@ -34,7 +34,7 @@ export default function ServiceModal({ service, onClose, onBook }: Props) {
         </div>
 
         <button
-          onClick={onBook}
+          onClick={() => onBook(service.title)}
           className="mt-6 w-full bg-[#D4AF37] py-2 rounded-full font-medium"
         >
           Book This Service
