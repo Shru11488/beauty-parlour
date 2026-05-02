@@ -22,7 +22,7 @@ export const services = [
   {
     title: "Nail Art",
     category: "Nails",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371",
+    image: "https://assets.myntassets.com/w_360,q_50,,dpr_2,fl_progressive,f_webp/assets/images/2024/JULY/26/zPA0JwiW_68eb52a0e2e64d11b2b825a14cef7568.jpg",
     options: [
       { name: "Gel Nails", price: "£40" },
       { name: "Acrylic Nails", price: "£60" },
@@ -42,7 +42,7 @@ export const services = [
   {
     title: "Manicure",
      category: "Nails",
-    image: "https://pngimg.com/uploads/nails/nails_PNG9.png",
+    image: "https://png.pngtree.com/png-vector/20250813/ourmid/pngtree-woman-hand-showing-ombre-pink-milky-nail-manicure-on-short-natural-png-image_17150567.webp",
     options: [
       { name: "Classic Manicure", price: "£25" },
       { name: "Gel Manicure", price: "£35" },

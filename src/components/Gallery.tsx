@@ -5,11 +5,18 @@ import { motion } from "framer-motion";
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-24 px-6 md:px-10 bg-white">
+    <section id="gallery" className="py-24 px-6 md:px-10 bg-[#F8F5F2]">
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold">Our Work</h2>
-        <p className="text-gray-500 mt-2">A glimpse of our transformations</p>
+        <div className="w-20 h-[2px] bg-black/20 mx-auto mb-6" />
+
+        <h2 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-medium">
+          Our Work
+        </h2>
+
+        <p className="font-sans text-[14px] md:text-[16px] tracking-[0.2em] uppercase text-gray-500 mt-4">
+          A glimpse of our transformations
+        </p>
       </div>
 
       {/* Grid */}

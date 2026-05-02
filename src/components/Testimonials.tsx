@@ -8,8 +8,13 @@ export default function Testimonials() {
     <section className="py-24 px-6 md:px-10 bg-[#F8F5F2]">
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold">What Our Clients Say</h2>
-        <p className="text-gray-500 mt-2">
+        <div className="w-20 h-[2px] bg-black/20 mx-auto mb-6" />
+
+        <h2 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-medium">
+          What Our Clients Say
+        </h2>
+
+        <p className="font-sans text-[14px] md:text-[16px] tracking-[0.2em] uppercase text-gray-500 mt-4">
           Real experiences from our happy clients
         </p>
       </div>

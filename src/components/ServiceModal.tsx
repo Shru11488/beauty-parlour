@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 type ServiceOption = {
   name: string;
   price: string;
@@ -13,37 +15,59 @@ type Service = {
 type Props = {
   service: Service | null;
   onClose: () => void;
-  onBook: (serviceName: string) => void;
+  onBook: (selectedServices: string[]) => void;
 };
 
 export default function ServiceModal({ service, onClose, onBook }: Props) {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedOptions([]); // reset when switching category
+  }, [service]);
+
   if (!service) return null;
 
+  const handleSelect = (option: string) => {
+    setSelectedOptions((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option],
+    );
+  };
+
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="bg-white rounded-2xl p-6 w-full max-w-md">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+      <div className="bg-white p-6 rounded-xl w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4">{service.title}</h2>
 
-        <div className="space-y-3">
-          {service.options.map((opt, i) => (
-            <div key={i} className="flex justify-between border-b pb-2">
-              <span>{opt.name}</span>
-              <span className="text-[#D4AF37]">{opt.price}</span>
-            </div>
-          ))}
-        </div>
+        {service.options.map((opt, i) => (
+          <div
+            key={i}
+            onClick={() => handleSelect(opt.name)}
+            className={`flex justify-between p-2 border-b cursor-pointer rounded
+              ${
+                selectedOptions.includes(opt.name)
+                  ? "bg-yellow-100"
+                  : "hover:bg-gray-50"
+              }`}
+          >
+            <span>{opt.name}</span>
+            <span>{opt.price}</span>
+          </div>
+        ))}
 
         <button
-          onClick={() => onBook(service.title)}
-          className="mt-6 w-full bg-[#D4AF37] py-2 rounded-full font-medium"
+          disabled={selectedOptions.length === 0}
+          onClick={() => {
+            onBook(selectedOptions); // send to parent
+            setSelectedOptions([]); // reset local
+          }}
+          className="mt-4 w-full bg-yellow-500 py-2 rounded disabled:opacity-50"
         >
-          Book This Service
+          Add to Booking
         </button>
 
-        <button
-          onClick={onClose}
-          className="mt-3 text-sm text-gray-500 block mx-auto"
-        >
+        <button onClick={onClose} className="mt-2 text-sm block mx-auto">
           Close
         </button>
       </div>

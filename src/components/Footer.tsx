@@ -1,3 +1,5 @@
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer id="contact" className="bg-black text-white py-20 px-6 md:px-10">
@@ -28,8 +30,26 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="text-center text-gray-500 text-sm mt-10 border-t border-gray-800 pt-6">
-        © 2026 Glow Studio. All rights reserved.
+      <div className="mt-10 border-t border-gray-800 pt-6 flex items-center justify-between">
+        {/* LEFT */}
+        <div className="text-gray-500 text-sm">
+          © 2026 Glow Studio. All rights reserved.
+        </div>
+
+        {/* RIGHT */}
+        <div className="flex items-center gap-5 text-gray-400">
+          <a href="#" className="hover:text-white hover:scale-110 transition">
+            <FaInstagram size={18} />
+          </a>
+
+          <a href="#" className="hover:text-white hover:scale-110 transition">
+            <FaFacebookF size={18} />
+          </a>
+
+          <a href="#" className="hover:text-white hover:scale-110 transition">
+            <FaTwitter size={18} />
+          </a>
+        </div>
       </div>
     </footer>
   );
