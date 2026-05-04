@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Playfair_Display, Inter } from "next/font/google";
-import SmoothScroll from "@/components/SmoothScroll";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
@@ -40,7 +39,7 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
       </body>
     </html>
   );
